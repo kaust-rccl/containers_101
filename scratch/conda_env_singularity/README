@@ -1,0 +1,1 @@
+If you haven't pulled the Docker image and converted to SIF, the singularity build command will do so automatically (test it)
