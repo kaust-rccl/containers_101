@@ -1,0 +1,30 @@
+Loading module for Singularity
+Singularity 3.5 modules now loaded
+[34mINFO:   [0m Starting build...
+Getting image source signatures
+Copying blob sha256:3f4ca61aafcd4fc07267a105067db35c0f0ac630e1970f3cd0c7bf552780e985
+Copying blob sha256:69a5d9e1ecd6566da53d0978004bdf37dddfaba1d8a6117966f397b41cbbc529
+Copying blob sha256:7b4354700ca480732ead22a553cc45916dc5466709ca64d964c4647b5b9343e9
+Copying blob sha256:a51a10e868ece61de3b2e52531792e123f8ddcf3d12aef6c6a1dd04a4f5cebb0
+Copying blob sha256:a93f9fd2501c109efa2f8764c54323a43bc01a07c0cafc3e40d76f6ea38f466f
+Copying blob sha256:ac0a4c1fc81b7f49d499b0868deccbacf6eed11f1b0e331d615f77a37baa2872
+Copying blob sha256:b2288b4334ed6fc8594ddccb32b4cec1017e6b9aefc31bbd22730208390d58b0
+Copying blob sha256:a60fa86ca5b9ae919311a68a8aa0409453ba2df487b4026b6dac7d8986256a0d
+Copying blob sha256:81c432f463cb445f3714b7755cda0982a2b7482481a0ca8406c86e9147e74402
+Copying blob sha256:51ad7d420200359331961cdf8f1faace9cc73a4ac452672aae19a447597a1162
+Copying config sha256:2d4a020ebe50c471880b3f89a0450f0f216c723122317715a63f7119d4dca374
+Writing manifest to image destination
+Storing signatures
+2023/02/15 15:26:12  info unpack layer: sha256:3f4ca61aafcd4fc07267a105067db35c0f0ac630e1970f3cd0c7bf552780e985
+2023/02/15 15:26:14  info unpack layer: sha256:69a5d9e1ecd6566da53d0978004bdf37dddfaba1d8a6117966f397b41cbbc529
+2023/02/15 15:26:17  info unpack layer: sha256:7b4354700ca480732ead22a553cc45916dc5466709ca64d964c4647b5b9343e9
+2023/02/15 15:26:21  info unpack layer: sha256:a51a10e868ece61de3b2e52531792e123f8ddcf3d12aef6c6a1dd04a4f5cebb0
+2023/02/15 15:26:21  info unpack layer: sha256:a93f9fd2501c109efa2f8764c54323a43bc01a07c0cafc3e40d76f6ea38f466f
+2023/02/15 15:26:21  info unpack layer: sha256:ac0a4c1fc81b7f49d499b0868deccbacf6eed11f1b0e331d615f77a37baa2872
+2023/02/15 15:26:31  info unpack layer: sha256:b2288b4334ed6fc8594ddccb32b4cec1017e6b9aefc31bbd22730208390d58b0
+2023/02/15 15:26:31  info unpack layer: sha256:a60fa86ca5b9ae919311a68a8aa0409453ba2df487b4026b6dac7d8986256a0d
+2023/02/15 15:26:31  info unpack layer: sha256:81c432f463cb445f3714b7755cda0982a2b7482481a0ca8406c86e9147e74402
+2023/02/15 15:26:31  info unpack layer: sha256:51ad7d420200359331961cdf8f1faace9cc73a4ac452672aae19a447597a1162
+[34mINFO:   [0m Adding runscript
+[34mINFO:   [0m Creating SIF file...
+[34mINFO:   [0m Build complete: ./conda_test.modified

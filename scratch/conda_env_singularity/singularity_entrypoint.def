@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: mshaikh/conda_test:latest
+
+%runscript 
+    . /opt/conda/etc/profile.d/conda.sh
+    conda activate myenv
+    exec "$@"
+    
+
