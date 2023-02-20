@@ -1,0 +1,77 @@
+FROM ompi:latest
+
+RUN	apt-get install -y flex bison cmake zlib1g-dev \
+	libboost-system-dev libboost-thread-dev \
+	gnuplot libreadline-dev libncurses-dev libxt-dev \
+        qt4-dev-tools libqt4-dev libqt4-opengl-dev freeglut3-dev libqtwebkit-dev
+
+WORKDIR /app
+ENV OF_HOME="/app/OpenFOAM-v2006"
+ENV OF_BASHRC="${OF_HOME}/etc/bashrc"
+
+RUN curl -o OpenFOAM-v2006.tgz -L https://sourceforge.net/projects/openfoam/files/v2006/OpenFOAM-v2006.tgz && \
+    curl -o ThirdParty-v2006.tgz -L https://sourceforge.net/projects/openfoam/files/v2006/ThirdParty-v2006.tgz && \
+    tar xvf OpenFOAM-v2006.tgz && tar xvf ThirdParty-v2006.tgz && \
+    rm OpenFOAM-v2006.tgz ThirdParty-v2006.tgz
+
+# Creating prefs.sh for changing forwarding preferences to bashrc
+RUN echo 'export FOAM_INST_DIR="/app/OpenFOAM-v2006" \nexport WM_MPLIB=SYSTEMOPENMPI \nexport WM_COMPILER_TYPE=system \nexport WM_COMPILER=Gcc \nexport WM_LABEL_SIZE=64 \nexport CC=mpicc CXX=mpicxx FC=mpif90 \n' >> $OF_HOME/etc/prefs.sh 
+
+
+
+
+WORKDIR $OF_HOME
+SHELL ["/bin/bash", "-c"]
+RUN source /app/OpenFOAM-v2006/etc/bashrc && wclean -a && ./Allwmake -s -l -j1
+ENV FOAM_TUTORIALS=/app/OpenFOAM-v2006/tutorials
+ENV LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+ENV FOAM_RUN=/root/OpenFOAM/-v2006/run
+ENV WM_THIRD_PARTY_DIR=/app/ThirdParty-v2006
+ENV FOAM_APP=/app/OpenFOAM-v2006/applications
+ENV FOAM_UTILITIES=/app/OpenFOAM-v2006/applications/utilities
+ENV FOAM_API=2006
+ENV FOAM_APPBIN=/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/bin
+ENV CC=mpicc
+ENV WM_PRECISION_OPTION=DP
+ENV FOAM_SOLVERS=/app/OpenFOAM-v2006/applications/solvers
+ENV FOAM_EXT_LIBBIN=/app/ThirdParty-v2006/platforms/linux64GccDPInt64/lib
+ENV FOAM_USER_APPBIN=/root/platforms/linux64GccDPInt64Opt/bin
+ENV PWD=/app/OpenFOAM-v2006
+ENV WM_PROJECT_USER_DIR=/root/OpenFOAM/-v2006
+ENV WM_OPTIONS=linux64GccDPInt64Opt
+ENV WM_PROJECT=OpenFOAM
+ENV FOAM_LIBBIN=/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib
+ENV MPI_ARCH_PATH=/usr/local
+ENV WM_ARCH=linux64
+ENV FOAM_SRC=/app/OpenFOAM-v2006/src
+ENV FOAM_ETC=/app/OpenFOAM-v2006/etc
+ENV FC=mpif90
+ENV FOAM_SITE_APPBIN=/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/bin
+ENV CXX=mpicxx
+ENV TERM=xterm
+ENV OF_HOME=/app/OpenFOAM-v2006
+ENV FOAM_SITE_LIBBIN=/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/lib
+ENV WM_COMPILER_LIB_ARCH=64
+ENV OF_BASHRC=/app/OpenFOAM-v2006/etc/bashrc
+ENV WM_COMPILER=Gcc
+ENV WM_DIR=/app/OpenFOAM-v2006/wmake
+ENV WM_LABEL_SIZE=64
+ENV WM_PROJECT_VERSION=v2006
+ENV WM_LABEL_OPTION=Int64
+ENV WM_MPLIB=SYSTEMOPENMPI
+ENV FOAM_INST_DIR=/app/OpenFOAM-v2006
+ENV WM_COMPILE_OPTION=Opt
+ENV FFTW_ARCH_PATH=/app/ThirdParty-v2006/platforms/linux64Gcc/fftw-3.3.7
+ENV ADIOS2_ARCH_PATH=/app/ThirdParty-v2006/platforms/linux64Gcc/ADIOS2-2.4.0
+ENV WM_COMPILER_TYPE=system
+ENV SCOTCH_ARCH_PATH=/app/ThirdParty-v2006/platforms/linux64GccDPInt64/scotch_6.0.9
+ENV FOAM_USER_LIBBIN=/root/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib
+ENV FOAM_MPI=openmpi-system
+ENV CGAL_ARCH_PATH=/app/ThirdParty-v2006/platforms/linux64Gcc/CGAL-4.12.2
+ENV WM_PROJECT_DIR=/app/OpenFOAM-v2006
+ENV BOOST_ARCH_PATH=/app/ThirdParty-v2006/platforms/linux64Gcc/boost_1_66_0
+
+ENV PATH=/root/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/bin:/app/OpenFOAM-v2006/wmake:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+
+ENV LD_LIBRARY_PATH=/app/ThirdParty-v2006/platforms/linux64Gcc/fftw-3.3.7/lib64:/app/ThirdParty-v2006/platforms/linux64Gcc/CGAL-4.12.2/lib64:/app/ThirdParty-v2006/platforms/linux64Gcc/boost_1_66_0/lib64:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib/openmpi-system:/app/ThirdParty-v2006/platforms/linux64GccDPInt64/lib/openmpi-system:/usr/local/lib:/root/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib:/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/lib:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib:/app/ThirdParty-v2006/platforms/linux64GccDPInt64/lib:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib/dummy:/usr/lib/x86_64-linux-gnu
+ENV _=/usr/bin/env
