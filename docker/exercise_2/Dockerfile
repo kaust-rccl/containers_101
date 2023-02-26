@@ -1,5 +1,8 @@
+# change this into latest
 FROM ubuntu:focal
+
 RUN apt-get update
+# colapse these lines into one 
 RUN apt-get install -y git
 RUN apt-get install -y wget
 
@@ -7,13 +10,15 @@ RUN apt-get install -y wget
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 # install miniconda in user's miniconda3 directory
-RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /miniconda3
+RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /software/miniconda3
 
 # define environment path
-ENV PATH=$PATH:/miniconda3/pcondabin:/miniconda3/bin
+ENV PATH=$PATH:/miniconda3/pcondabin:/software/miniconda3/bin
 
 # copy packages folder to container
 COPY packages packages
+# volume mount like -v 
+VOLUME 
 # update conda
 RUN conda update --name base --channel defaults --yes conda
 
