@@ -1,0 +1,8 @@
+- Build an image:
+ > docker build -t condaenv .
+- Test the image:
+ > docker run -ti --rm -v ${PWD}:/tmp condaenv:latest python /tmp/run.py
+Expected output:
+
+1.5.3
+/software/miniconda3/envs/myenv/lib/python3.9/site-packages/pandas/__init__.py
