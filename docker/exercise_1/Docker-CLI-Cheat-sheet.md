@@ -6,7 +6,7 @@ First of all, what is Docker? Docker is a platform for building, shipping, and r
 
 # Docker CLI Cheat Sheet
 
-![alt text](images/docker-cli-cheat-sheet.png)
+![alt text](Images/docker-cli-cheat-sheet.png)
 
 
 ## IMAGES
@@ -17,7 +17,6 @@ Docker images are a lightweight, standalone, executable package of software that
 
 ```
 $ docker build –t  <image_name>
-
 ```
 
 #### 2 - List local images
@@ -36,7 +35,6 @@ $ docker rmi <image_name>
 
 ```
 $ docker image prune
-
 ```
 
 ## DOCKER HUB
@@ -46,7 +44,6 @@ Docker Hub is a service provided by Docker for finding and sharing container ima
 
 ```
 $ docker login –u  <username>
-
 ```
 
 #### 2 - Publish an image to Docker Hub
@@ -64,7 +61,6 @@ $ docker search <image_name>
 
 ```
 $ docker pull <image_name>
-
 ```
 
 
@@ -77,8 +73,6 @@ A container is a runtime instance of a docker image. A container will always run
 
 ```
 $ docker run --name  <container_name>  <image_name>
-
-
 ```
 
 #### TIP: WHAT RUN DID
@@ -95,7 +89,6 @@ $ docker run --name  <container_name>  <image_name>
 
 ```
 $ docker run –p  <host_port>:<container_port>   <image_name>
-
 ```
 
 #### 3 - Run a container with a mounted volume:
@@ -103,7 +96,6 @@ $ docker run –p  <host_port>:<container_port>   <image_name>
 
 ```
 $ docker run –it –v  <host_path>:<container_path>   <image_name>
-
 ```
 #### 4 - Run a container in the background 
 
@@ -118,8 +110,6 @@ $ docker run –d <image_name>
 
 ```
 $ docker start|stop <container_name>   ( or  <container-id> )
-
-
 ```
 
 #### 6 - Remove a stopped container:
@@ -127,8 +117,6 @@ $ docker start|stop <container_name>   ( or  <container-id> )
 
 ```
 $ docker rm  <container_name>  
-
-
 ```
 
 #### 7 - Open a shell inside a running container: 
@@ -136,8 +124,6 @@ $ docker rm  <container_name>
 
 ```
 $ docker exec –it  <container_name>  sh
-
-
 ```
 
 #### 8 - Fetch and follow the logs of a container:
@@ -145,8 +131,6 @@ $ docker exec –it  <container_name>  sh
 
 ```
 $ docker logs –f <container_name>
-
-
 ```
 
 #### 9 - To list currently running containers: 
@@ -154,25 +138,18 @@ $ docker logs –f <container_name>
 
 ```
 $ docker ps
-
-
 ```
 
 #### 10 - List all docker containers (running and stopped): 
 
 ```
 $ docker ps –all
-
-
 ```
 
 #### 11 - View resource usage stats:
 
 ```
 $ docker container stats
-
-
-
 ```
 
 
