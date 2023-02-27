@@ -23,13 +23,14 @@ export BIND_MOUNT="-B $UCX_DIR,$OPENMPI_DIR,/usr/lib64,/opt,/etc"
 decompDict="-decomposeParDict system/decomposeParDict.6"
 ## Standard decomposeParDict name:
 # unset decompDict
+cp /sw/xc40cle7up03/openfoam/2006/cle7_gnu8.3.0/OpenFOAM-v2006/tutorials/resources/geometry/motorBike.obj.gz .                      
 cp -r /sw/xc40cle7up03/openfoam/2006/cle7_gnu8.3.0/OpenFOAM-v2006/tutorials/incompressible/simpleFoam/motorBike .
 cd motorBike
 singularity exec $BIND_MOUNT $IMAGE ./Allclean
 rm *.log
 
 # copy motorbike surface from resources directory
-singularity exec $BIND_MOUNT $IMAGE cp /scratch/$USER/trainings/containers/containers_101/singularity/workflows/openfoam2006/container/motorBike.obj.gz constant/triSurface/
+singularity exec $BIND_MOUNT $IMAGE cp $PWD/../motorBike.obj.gz constant/triSurface/
 
 mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE surfaceFeatureExtract >> surfaceFeatureExtract.log
 mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE blockMesh >> blockMesh.log
@@ -49,7 +50,7 @@ mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE topoSet $decompDict -parallel >
 #- For non-parallel running: - set the initial fields
 
 #- For parallel running: set the initial fields
-mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE /scratch/$USER/trainings/containers/containers_101/singularity/workflows/openfoam2006/container/restore.sh 
+mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE $PWD/../restore.sh 
 
 mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE patchSummary $decompDict -parallel >> patchSummary.log
 mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE potentialFoam $decompDict -writephi -parallel >> potentialFoam.log
