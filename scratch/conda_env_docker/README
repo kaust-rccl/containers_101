@@ -1,0 +1,14 @@
+- Build an image:
+ > docker build -t condaenv .
+- Test the image:
+ > docker run -ti --rm -v ${PWD}:/tmp condaenv:latest python /tmp/run.py
+Expected output:
+
+1.5.3
+/software/miniconda3/envs/myenv/lib/python3.9/site-packages/pandas/__init__.py
+
+
+
+- For launching Jupyterlab for testing as user:jovyan uid:1000
+docker run -ti --rm -u 1000 -p 8888:8888 -e JUPYTER_DATA_DIR=/workdir -e JUPYTER_CONFIG_PATH=/workdir -e JUPYTER_CONFIG_DIR=/workdir -v ${PWD}/workdir:/workdir -w /workdir condaenv:latest jupyter lab --port=8888 --ip=0.0.0.0 --NotebookApp.token=''
+
