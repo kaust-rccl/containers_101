@@ -10,7 +10,6 @@
 
 ```
 $ docker pull hello-world
-
 ```
 
 #### 2 - Run a container using the Hello-world image
@@ -37,7 +36,6 @@ $ docker ps -a
 
 ```
 $ docker pull ubuntu
-
 ```
 
 #### 2 - Create and Run a container named ubuntu-hello & get into the bash terminal
