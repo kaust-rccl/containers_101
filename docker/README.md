@@ -26,7 +26,14 @@ If you are running this example on a local machine with apple silicon, you need 
 
 To run the container, you need to run the following command. 
 
-```docker run -it -p 8888:8888 customjupyter```
+A) If you are running this example on a local machine with intel processor, you can run the following command. This assumes the entrypoint is disabled. 
+
+```docker run -it customjupyter```
+
+
+B) With the entrypoint enable, you can run this python command.
+
+```docker run -it customjupyter python -c 'import this'```
 
 ## Authors
 
