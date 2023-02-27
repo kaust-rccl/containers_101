@@ -14,9 +14,9 @@ We hope you find these resources helpful in your Docker journey.
 
 Here, you'll find resources to help you get started with Docker, including:
 
-- A brief introduction to Docker and how to manipulate images and containers ([Docker CLI cheat sheet](./Docker-CLI-Cheat-sheet.md))
-- [A Docker - Demo](./Docker-Demo.md)
-- [Docker - Exercise 1](./Docker-Exercise-1.md)
+- A brief introduction to Docker and how to manipulate images and containers ([Docker CLI cheat sheet](exercise_1/Docker-CLI-Cheat-sheet.md))
+- [A Docker - Demo](exercise_1/Docker-Demo.md)
+- [Docker - Exercise 1](exercise_1/Docker-Exercise-1.md)
 
 
 ## Example 2 : Dockerfiles
