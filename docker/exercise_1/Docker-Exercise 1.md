@@ -1,10 +1,10 @@
 # Exercise 1
 
-![alt text](Images/image.png)
+![alt text](Images/exercise.png)
 
 # Solution
 
-![alt text](Images/image-2.png)
+![alt text](Images/solution.png)
 
 
 ## Continuumio/miniconda3 docker image
@@ -13,7 +13,6 @@
 
 ```
 $ docker pull continuumio/miniconda3
-
 ```
 
 #### 2 - Create and Run a container named my-first-python-script & get into the bash terminal
