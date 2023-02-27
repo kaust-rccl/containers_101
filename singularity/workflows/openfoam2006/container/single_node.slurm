@@ -16,19 +16,20 @@ export LD_LIBRARY_PATH=$CRAY_LD_LIBRARY_PATH:$LD_LIBRARY_PATH
 export SINGULARITYENV_LD_LIBRARY_PATH=$CRAY_LD_LIBRARY_PATH:$LD_LIBRARY_PATH:/opt/cray/wlm_detect/default/lib64:/etc/alternatives:/app/ThirdParty-v2006/platforms/linux64Gcc/fftw-3.3.7/lib64:/app/ThirdParty-v2006/platforms/linux64Gcc/CGAL-4.12.2/lib64:/app/ThirdParty-v2006/platforms/linux64Gcc/boost_1_66_0/lib64:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib/openmpi-system:/app/ThirdParty-v2006/platforms/linux64GccDPInt64/lib/openmpi-system:/usr/local/lib:/root/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib:/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/lib:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib:/app/ThirdParty-v2006/platforms/linux64GccDPInt64/lib:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/lib/dummy:/usr/lib/x86_64-linux-gnu:/usr/lib64:/usr/lib
 export SINGULARITYENV_APPEND_PATH=$PATH:/root/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/site/2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/platforms/linux64GccDPInt64Opt/bin:/app/OpenFOAM-v2006/bin:/app/OpenFOAM-v2006/wmake:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
 
-export IMAGE=/project/k01/shaima0d/singularity_test/images/of2006_latest.sif
+export IMAGE=/scratch/$USER/images/openfoam_openmpi_base403_2006.sif
 export BIND_MOUNT="-B $UCX_DIR,$OPENMPI_DIR,/usr/lib64,/opt,/etc"
 
 # Alternative decomposeParDict name:
 decompDict="-decomposeParDict system/decomposeParDict.6"
 ## Standard decomposeParDict name:
 # unset decompDict
+cp -r /sw/xc40cle7up03/openfoam/2006/cle7_gnu8.3.0/OpenFOAM-v2006/tutorials/incompressible/simpleFoam/motorBike .
 cd motorBike
 singularity exec $BIND_MOUNT $IMAGE ./Allclean
 rm *.log
 
 # copy motorbike surface from resources directory
-singularity exec $BIND_MOUNT $IMAGE cp  /project/k01/shaima0d/singularity_test/openfoam/of2006/container/motorBike.obj.gz constant/triSurface/
+singularity exec $BIND_MOUNT $IMAGE cp /scratch/$USER/trainings/containers/containers_101/singularity/workflows/openfoam2006/container/motorBike.obj.gz constant/triSurface/
 
 mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE surfaceFeatureExtract >> surfaceFeatureExtract.log
 mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE blockMesh >> blockMesh.log
@@ -48,7 +49,7 @@ mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE topoSet $decompDict -parallel >
 #- For non-parallel running: - set the initial fields
 
 #- For parallel running: set the initial fields
-mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE /project/k01/shaima0d/singularity_test/openfoam/of2006/container/restore.sh
+mpirun -np 1 singularity exec $BIND_MOUNT $IMAGE /scratch/$USER/trainings/containers/containers_101/singularity/workflows/openfoam2006/container/restore.sh 
 
 mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE patchSummary $decompDict -parallel >> patchSummary.log
 mpirun -np 6 singularity exec $BIND_MOUNT $IMAGE potentialFoam $decompDict -writephi -parallel >> potentialFoam.log
