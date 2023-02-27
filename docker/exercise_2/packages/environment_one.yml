@@ -1,7 +1,0 @@
-name: one
-channels:
-  - conda-forge
-dependencies:
-  - python
-  - ipykernel
-  - pip
