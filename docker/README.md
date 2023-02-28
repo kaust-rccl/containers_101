@@ -37,7 +37,7 @@ B) With the entrypoint enable, you can run this python command.
 
 ## Authors
 
-- [Dr. Didier Barradas Bautista](https://www.github.com/octokatherine)
+- [Dr. Didier Barradas Bautista](https://www.github.com/d-barradas)
 - [Dr. Abdelghafour Halimi](https://www.ahalimi.com/)
 - [Dr. Kadir Akbudak ](https://www.hpc.kaust.edu.sa/team)
 - [Dr. Mohsin Ahmed Shaikh](https://www.hpc.kaust.edu.sa/team)
