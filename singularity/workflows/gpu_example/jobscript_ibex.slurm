@@ -3,13 +3,13 @@
 #SBATCH --gpus=1
 #SBATCH --gpus-per-node=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=4
 #SBATCH --time=00:10:00
 
 module load singularity
 module list
 
-export IMAGE=/ibex/ai/home/shaima0d/singularity_images/ngc/pytorch_20.08-py3.sif
+export IMAGE=/ibex/ai/home/shaima0d/singularity_images/ngc/pytorch_22.12-py3.sif
 
 
 # setup ssh tunneling
