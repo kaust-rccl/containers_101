@@ -1,9 +1,10 @@
 #!/bin/bash 
 
 #SBATCH --gpus=2
-#SBATCH --gpus-per-node=2
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --gpus-per-node=1
+#SBATCH --ntasks=2
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=4
 #SBATCH --time=00:10:00
 
 module load singularity
