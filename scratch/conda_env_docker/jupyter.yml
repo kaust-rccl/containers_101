@@ -1,0 +1,12 @@
+name: myenv
+channels:
+ - conda-forge
+dependencies:
+ - python=3.9
+ - jupyterlab
+ - pip
+ - pip:
+    - pandas
+    - ipykernel
+    - ipyparallel
+    - jupyterlab_nvdashboard
