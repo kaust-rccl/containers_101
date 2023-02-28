@@ -20,7 +20,7 @@ Here, you'll find resources to help you get started with Docker, including:
 
 
 ## Example 2 : Dockerfiles
-If you are running this example on a local machine with apple silicon, you need to run the folling command to build the image. 
+If you are running this example on a local machine with apple silicon, you need to run the following command to build the image. 
 
 ```docker build -t customjupyter --platform linux/amd64 --no-cache .```
 
