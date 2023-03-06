@@ -34,7 +34,7 @@ RUN conda install --name base --channel conda-forge mamba --yes
 ########## install packages in base environment ##########
 
 # install packages from environment.yml that contains jupyter lab
-RUN mamba env update -f packages/environment.yml
+RUN mamba env update -f packages/environment2.yml
 
 
 # remove packages folder and miniconda installation file
