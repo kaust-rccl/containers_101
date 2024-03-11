@@ -19,19 +19,23 @@ Here, you'll find resources to help you get started with Docker, including:
 - [Docker - Exercise 1](exercise_1/Docker-Exercise-1.md)
 
 
-## Example 2 : Dockerfiles
-If you are running this example on a local machine with apple silicon, you need to run the following command to build the image. 
+## Example 2: Dockerfiles
+If you run this example on a local machine with Apple silicon, you must run the following command to build the image. 
 
 ```docker build -t customjupyter --platform linux/amd64 --no-cache .```
 
 To run the container, you need to run the following command. 
 
-A) If you are running this example on a local machine with intel processor, you can run the following command. This assumes the entrypoint is disabled. 
+A) If you run this example on a local machine with an intel processor, you can run the following command. This assumes the entrypoint is disabled. 
 
 ```docker run -it customjupyter```
 
+  When using the apple silicon you have to use the *** --platform *** flag
 
-B) With the entrypoint enable, you can run this python command.
+``` docker run --platform linux/amd64  -it customjupyter```
+
+
+B) With the entrypoint enabled, you can run this Python command. Remember to add the  *** --platform *** flag if you need it
 
 ```docker run -it customjupyter python -c 'import this'```
 
